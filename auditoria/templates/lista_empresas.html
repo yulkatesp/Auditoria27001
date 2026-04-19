@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Empresas</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #e3efff;
+            --card-bg: #ffffff99;
+            --border-color: #c5d9f1;
+            --text-color: #5b7da1;
+            --header-bg: #a3c4f3;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 40px;
+            padding: 30px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        h2 {
+            color: #547294;
+            background-color: var(--header-bg);
+            display: inline-block;
+            padding: 10px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #8baad6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        th {
+            color: var(--text-color);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: white;
+            padding: 15px;
+            color: #666;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td:first-child { border-left: 1px solid var(--border-color); border-radius: 15px 0 0 15px; }
+        td:last-child { border-right: 1px solid var(--border-color); border-radius: 0 15px 15px 0; }
+
+        .btn-evaluar {
+            background-color: #a3c4f3;
+            color: white;
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-evaluar:hover { background-color: #5b7da1; }
+
+        .back-link {
+            margin-top: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Empresas Registradas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>NIT</th>
+                <th>Categoría</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% if empresas %}
+            {% for e in empresas %}
+            <tr>
+                <td>{{ e.id }}</td>
+                <td><strong>{{ e.nombre }}</strong></td>
+                <td>{{ e.nit }}</td>
+                <td>{{ e.categoria }}</td>
+                <td>
+                    <a href="{% url 'seleccionar_rol' e.id %}" class="btn-evaluar">
+                        Evaluar
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    No hay empresas registradas.
+                </td>
+            </tr>
+        {% endif %}
+
+        </tbody>
+    </table>
+
+    <a href="{% url 'menu' %}" class="back-link">← Volver al menú</a>
+
+</div>
+
+</body>
+</html>

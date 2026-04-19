@@ -1,0 +1,235 @@
+{% if request.GET.guardado %}
+<p style="color: green; font-weight: bold;">
+    ✅ Evaluación guardada correctamente
+</p>
+{% endif %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación ISO 27001</title>
+
+    <style>
+        :root {
+            --bg-main: #eef5ff;
+            --card-white: #ffffff;
+            --soft-blue: #bcd4f5;
+            --text-dark: #5a7d9a;
+            --accent: #a3c4f3;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .evaluacion-container {
+            background: var(--card-white);
+            border-radius: 35px;
+            padding: 30px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .btn-filtro {
+            border: 2px solid var(--soft-blue);
+            background: white;
+            color: #5a7d9a;
+            border-radius: 20px;
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+
+        .btn-filtro:active,
+        .btn-filtro:hover,
+        .btn-filtro:focus {
+            background-color: #5a7d9a;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0 10px;
+        }
+
+        .fila-control td {
+            background-color: #f8fbff;
+            color: #5a7d9a;
+            padding: 15px;
+        }
+
+        .btn-guardar {
+            background-color: var(--accent);
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            padding: 15px 40px;
+            border-radius: 25px;
+            border: none;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .btn-guardar:hover {
+            background-color: #5a7d9a;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            padding: 15px 40px;
+            border-radius: 25px;
+            border: none;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .status-select {
+            padding: 5px;
+            border-radius: 20px;
+            color: #5a7d9a;
+            background-color: #bcd4f5;
+            border: 1px solid lightgray;
+        }
+
+        .back-link {
+            display: block;
+            color: #5a7d9a;
+            ;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-blue);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .estado-cumple {
+            background-color: #c6efce;
+            color: #276221;
+        }
+
+        .estado-nocumple {
+            background-color: #ffc7ce;
+            color: #9c0006;
+        }
+
+        .estado-proceso {
+            background-color: #ffeb9c;
+            color: #9c6500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="evaluacion-container">
+
+        <h3 style="color: #5a7d9a">Evaluación ISO 27001</h3>
+        <p style="color: #5a7d9a">Rol: <strong>{{ rol }}</strong></p>
+        <p style="color: #5a7d9a">Empresa: <strong>{{ empresa.nombre }}</strong></p>
+
+        <!-- FILTROS -->
+        <div>
+            <button type="button" class="btn-filtro" onclick="filtrar('Todos')">Todos</button>
+            <button type="button" class="btn-filtro" onclick="filtrar('Organizacional')">Organizacional</button>
+            <button type="button" class="btn-filtro" onclick="filtrar('Personas')">Personas</button>
+            <button type="button" class="btn-filtro" onclick="filtrar('Físicos')">Físicos</button>
+            <button type="button" class="btn-filtro" onclick="filtrar('Tecnológicos')">Tecnológicos</button>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <table>
+                <thead>
+                    <tr style="color: #5a7d9a;">
+                        <th>Código</th>
+                        <th>Control</th>
+                        <th>Categoría</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for con in controles %}
+                    <tr class="fila-control" data-cat="{{ con.categoria }}">
+                        <td><strong>{{ con.codigo }}</strong></td>
+                        <td>
+                            {{ con.nombre }} <br>
+                            <small>{{ con.descripcion }}</small>
+                        </td>
+                        <td>{{ con.categoria }}</td>
+                        <td>
+                            <select name="control_{{ con.id }}" class="status-select"
+                                onchange="updateProgress(); colorearSelect(this)">
+                                <option value="Proceso">En Proceso</option>
+                                <option value="Cumple">Cumple</option>
+                                <option value="NoCumple">No Cumple</option>
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn-guardar" style="margin-left: 50px;">
+                Guardar Evaluación
+            </button>
+            <a href="{% url 'reporte_excel' empresa.id %}" class="btn-guardar" style="margin-left: 50px;">
+                Descargar Excel
+            </a>
+
+            <a style="margin-left: 50px;" href="{% url 'reporte_pdf' empresa.id %}" class="btn-guardar">
+                Descargar PDF
+            </a>
+            <a href="{% url 'dashboard' empresa.id %}" class="btn-guardar" style="margin-left: 50px;">
+                Ver Dashboard
+            </a>
+        </form>
+
+        <a style="color: #5a7d9a;" href="{% url 'menu' %}" class="back-link">← Volver al menú</a>
+
+        <p style="color: #5a7d9a;">Progreso: <span id="percent">0%</span></p>
+        <div style="background:#eee;height:10px;border-radius:20px;">
+            <div id="fill" style="height:100%;width:0%;background:#a3c4f3;border-radius: 20px;"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function filtrar(cat) {
+            document.querySelectorAll('.fila-control').forEach(f => {
+                f.style.display = (cat === 'Todos' || f.dataset.cat === cat) ? '' : 'none';
+            });
+        }
+
+        function updateProgress() {
+            const selects = document.querySelectorAll('.status-select');
+            const cumple = Array.from(selects).filter(s => s.value === 'Cumple').length;
+            const p = Math.round((cumple / selects.length) * 100) || 0;
+
+            document.getElementById('fill').style.width = p + '%';
+            document.getElementById('percent').innerText = p + '%';
+        }
+
+        window.onload = updateProgress;
+
+        function colorearSelect(sel) {
+    sel.className = 'status-select';
+    if (sel.value === 'Cumple')    sel.classList.add('estado-cumple');
+    if (sel.value === 'NoCumple') sel.classList.add('estado-nocumple');
+    if (sel.value === 'Proceso')  sel.classList.add('estado-proceso');
+}
+
+// Al final del window.onload existente, agrega:
+window.onload = function() {
+    updateProgress();
+    document.querySelectorAll('.status-select').forEach(colorearSelect);
+};
+    </script>
+
+</body>
+
+</html>

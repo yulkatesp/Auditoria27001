@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal - SGSI</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --bg-main: #eef5ff;
+            --card-white: #ffffff;
+            --soft-blue: #bcd4f5;
+            --text-dark: #5a7d9a;
+            --accent: #a3c4f3;
+            --success: #a8e6cf;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .menu-container {
+            background: var(--card-white);
+            padding: 40px;
+            border-radius: 40px;
+            width: 800px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: var(--success);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-menu {
+            display: block;
+            padding: 15px;
+            border: 2px solid var(--soft-blue);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .btn-menu:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="menu-container">
+
+    <h2 style="background: var(--accent); color:white; padding:10px 40px; border-radius:20px;">
+        Menú Principal
+    </h2>
+
+    {% if mensaje == 'exito' %}
+        <div class="alert-success">
+            <strong>¡Excelente!</strong> La evaluación se guardó correctamente.
+        </div>
+
+        <script>
+            Swal.fire({
+                title: '¡Guardado!',
+                text: 'La evaluación ISO 27001 se procesó con éxito.',
+                icon: 'success'
+            });
+        </script>
+    {% endif %}
+
+    <div class="grid-menu">
+
+        <div>
+            <a href="{% url 'empresas' %}" class="btn-menu">Ver empresas</a>
+            <a href="{% url 'crear_empresa' %}" class="btn-menu" style="margin-top:10px;">
+                Agregar empresa
+            </a>
+        </div>
+
+        <div>
+            <a href="#" class="btn-menu">Generar reporte</a>
+            <a href="/" class="btn-menu" style="margin-top:10px;">
+                Cerrar sesión
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Crear Cuenta</title>
+
+<style>
+:root {
+    --bg-main: #eef5ff;
+    --card-white: #ffffff;
+    --soft-blue: #bcd4f5;
+    --text-dark: #5a7d9a;
+    --accent: #a3c4f3;
+}
+
+body {
+    background-color: var(--bg-main);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: var(--card-white);
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    border: 1px solid var(--soft-blue);
+    width: 400px;
+    text-align: center;
+}
+
+.title {
+    background: var(--accent);
+    color: white;
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    text-align: left;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+input {
+    width: 350px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid var(--soft-blue);
+    margin-top: 5px;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(163, 196, 243, 0.5);
+}
+
+button {
+    background: #bcd4f5;
+    border: 2px solid var(--soft-blue);
+    padding: 15px;
+    border-radius: 25px;
+    margin-top: 20px;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.error {
+    background: #ffd6d6;
+    color: #9a5a5a;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ffb3b3;
+}
+
+.back-link {
+    display: block;
+    margin-top: 15px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">Crear Cuenta</div>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Usuario:</label>
+        <input type="text" name="username" placeholder="Ej: kate123" required>
+
+        <label>Correo:</label>
+        <input type="email" name="email" placeholder="correo@email.com">
+
+        <label>Contraseña:</label>
+        <input type="password" name="password" required>
+
+        <label>Confirmar contraseña:</label>
+        <input type="password" name="confirm" required>
+
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <a href="{% url 'login' %}" class="back-link">← Volver al login</a>
+
+</div>
+
+</body>
+</html>

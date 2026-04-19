@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        :root {
+            --bg-light-blue: #eef5ff;
+            --card-bg: #ffffff;
+            --border-blue: #bcd4f5;
+            --text-blue: #5a7d9a;
+            --accent-blue: #a3c4f3;
+            --hover-blue: #8eb9f0;
+        }
+
+        body {
+            background-color: var(--bg-light-blue);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid var(--border-blue);
+        }
+
+        h2 {
+            color: var(--text-blue);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .empresa-id {
+            background-color: var(--bg-light-blue);
+            color: var(--text-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-blue);
+        }
+
+        label {
+            display: block;
+            color: var(--text-blue);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--border-blue);
+            background-color: #fff;
+            color: var(--text-blue);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 8px rgba(163, 196, 243, 0.5);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(163, 196, 243, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--hover-blue);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-blue);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Selección de Rol para Evaluación</h2>
+
+    <!-- 🔥 Django reemplaza session -->
+    <div class="empresa-id">
+        Empresa ID: {{ empresa_id }}
+    </div>
+
+    <!-- 🔥 FORMULARIO DJANGO -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="rol">¿Cuál es su función hoy?</label>
+
+        <select name="rol" id="rol" class="form-control" required>
+            <option value="" disabled selected>Seleccione un rol...</option>
+            <option value="Auditor">Auditor</option>
+            <option value="Capacitador">Capacitador</option>
+            <option value="Implementador">Implementador</option>
+            <option value="Todos">Las tres opciones</option>
+        </select>
+
+        <button type="submit" class="btn-primary">
+            Continuar a Controles
+        </button>
+
+    </form>
+
+    <a href="{% url 'menu' %}" class="back-link">← Volver al menú</a>
+
+</div>
+
+</body>
+</html>

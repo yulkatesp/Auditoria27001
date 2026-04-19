@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Soluciones Digitales</title>
+
+    <style>
+        :root {
+            --azul-fondo: #eef5ff;
+            --azul-card: #e3edf9;
+            --azul-borde: #c7d9ee;
+            --azul-medio: #9db9e8;
+            --azul-oscuro: #6f8fbf;
+            --texto: #5a78a6;
+            --blanco: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--azul-fondo);
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 🔹 Banner izquierdo */
+        .banner {
+            flex: 1;
+            background-color: var(--azul-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-content {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 0 100px 100px 0;
+            margin-right: auto;
+            max-width: 80%;
+            box-shadow: 10px 0 20px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .iso-labels {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-right: 20px;
+        }
+
+        .label {
+            border: 2px solid var(--azul-borde);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--texto);
+            text-align: center;
+        }
+
+        .label.active {
+            background: var(--azul-medio);
+            color: var(--blanco);
+        }
+
+        .banner h1 {
+            color: var(--texto);
+            font-size: 22px;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        /* 🔹 Login lado derecho */
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: var(--blanco);
+            width: 300px;
+            padding: 50px 40px;
+            border-radius: 40px;
+            border: 12px solid var(--azul-borde);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            color: var(--texto);
+            margin-bottom: 30px;
+        }
+
+        .icon-circle {
+            background: var(--azul-medio);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+
+        .icon-circle svg {
+            fill: white;
+            width: 30px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--azul-borde);
+            background-color: #eaf2fc;
+            text-align: center;
+            outline: none;
+            color: var(--texto);
+            margin-left: -15px;
+        }
+
+        input::placeholder {
+            color: var(--texto);
+            opacity: 0.7;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--azul-medio);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--azul-oscuro);
+        }
+
+        .error-msg {
+            color: #ff5f5f;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔹 IZQUIERDA -->
+    <div class="banner">
+        <div class="banner-content">
+            <div class="iso-labels">
+                <div class="label" style="background-color: #f0f9ff;">ISO</div>
+                <div class="label" style="background-color: #cbeaff;">27001</div>
+                <div class="label active">CONTROL</div>
+            </div>
+            <h1>Soluciones digitales para la seguridad de la información</h1>
+        </div>
+    </div>
+
+    <!-- 🔹 DERECHA -->
+    <div class="login-section">
+        <div class="login-card">
+            <h2>Identifícate</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+                        1.79-4 4 1.79 4 4 4zm0 
+                        2c-2.67 0-8 1.34-8 
+                        4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+
+                <input type="text" name="username" placeholder="Usuario" required>
+
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 
+                        0-6 2.69-6 6s2.69 6 6 
+                        6c2.61 0 4.83-1.67 
+                        5.65-4H17v4h4v-4h2v-4H12.65z"/>
+                    </svg>
+                </div>
+
+                <input type="password" name="password" placeholder="Contraseña" required>
+
+                <div class="button-group">
+                    <button type="submit" style="margin-left: 20px;">Iniciar sesión</button>
+                </div>
+
+                <br>
+
+                <a href="{% url 'registro' %}">
+                    <button type="button">Crear cuenta</button>
+                </a>
+            </form>
+
+            {% if error %}
+                <p class="error-msg">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

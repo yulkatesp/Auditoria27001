@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Maestra de Documentos SGSI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dce8f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        h2 {
+            text-align: center;
+            color: #4a7ab5;
+            margin-bottom: 24px;
+        }
+        .categoria-titulo {
+            background-color: #b8d0eb;
+            color: #2c5282;
+            font-weight: bold;
+            padding: 8px 14px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        th {
+            background-color: #e8f0fb;
+            color: #4a7ab5;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #b8d0eb;
+        }
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+        tr:hover { background-color: #f5f9ff; }
+        input[type="text"], input[type="date"] {
+            border: 1px solid #cce0f5;
+            border-radius: 6px;
+            padding: 4px 8px;
+            width: 100%;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+        .btn-guardar {
+            background-color: #7aafd4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 14px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-guardar:hover { background-color: #4a7ab5; }
+        .volver {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4a7ab5;
+            text-decoration: none;
+        }
+        .msg-exito {
+            background: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Lista Maestra de Documentos del SGSI</h2>
+
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="msg-exito">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% regroup documentos by get_categoria_display as docs_por_categoria %}
+
+    {% for grupo in docs_por_categoria %}
+        <div class="categoria-titulo">{{ grupo.grouper }}</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Versión</th>
+                    <th>Nombre</th>
+                    <th>Ubicación</th>
+                    <th>Últ. Rev / Act</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in grupo.list %}
+                <tr>
+                    <form method="POST" action="{% url 'actualizar_documento' doc.id %}">
+                        {% csrf_token %}
+                        <td><strong>{{ doc.codigo }}</strong></td>
+                        <td><input type="text" name="version" value="{{ doc.version }}" style="width:60px"></td>
+                        <td><input type="text" name="nombre" value="{{ doc.nombre }}"></td>
+                        <td><input type="text" name="ubicacion" value="{{ doc.ubicacion }}"></td>
+                        <td><input type="date" name="ultima_revision"
+                            value="{{ doc.ultima_revision|date:'Y-m-d'|default:'' }}"></td>
+                        <td><button class="btn-guardar" type="submit">Guardar</button></td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+
+    <a href="{% url 'menu' %}" class="volver">← Volver al menú</a>
+</div>
+</body>
+</html>
