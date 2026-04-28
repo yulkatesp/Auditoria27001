@@ -47,9 +47,9 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 
 <!-- Agrega tus capturas en una carpeta /docs/screenshots/ y enlázalas aquí -->
 | Login | Evaluación | Crear | Empresas | Rol | Controles | Guardar | Lista Maestra |
-| ![Login](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) | ![Crear](docs/screenshots/crear.png) |
-| ![Empresas](docs/screenshots/crear.png) |  ![Rol](docs/screenshots/crear.png) |  ![Controles](docs/screenshots/crear.png) |
-| ![Guardar](docs/screenshots/crear.png) | | ![Lista Maestra](docs/screenshots/crear.png) |
+ ![Login](docs/screenshots/login.png) ![Dashboard](docs/screenshots/dashboard.png) ![Crear](docs/screenshots/crear.png) 
+ ![Empresas](docs/screenshots/crear.png)  ![Rol](docs/screenshots/crear.png)  ![Controles](docs/screenshots/crear.png) 
+ ![Guardar](docs/screenshots/crear.png) ![Lista Maestra](docs/screenshots/crear.png) 
 ---
 
 ## Tecnologías utilizadas
