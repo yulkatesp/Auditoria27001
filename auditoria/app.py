@@ -3,8 +3,8 @@ from pathlib import Path
 
 # ── Configuración de página ──────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Mi Portafolio",
-    page_icon="🌸",
+    page_title="Auditoría ISO 27001",
+    page_icon="🫆",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -29,7 +29,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ── Cargar el HTML del portafolio ────────────────────────────────────────────
-html_file = Path(__file__).parent / "portafolio.html"
+html_file = Path(__file__).parent / "templates/menu.html"
 
 # Lee solo el contenido del <body> para embeber en Streamlit
 with open(html_file, "r", encoding="utf-8") as f:
