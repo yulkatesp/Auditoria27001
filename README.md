@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ Sistema de Auditoría ISO 27001
+# Sistema de Auditoría ISO 27001
 
 **Plataforma web para la gestión y evaluación de controles de seguridad de la información**
 
@@ -13,15 +13,15 @@
 
 ---
 
-## 📋 Descripción
+##  Descripción
 
-Sistema web desarrollado en **Django** para gestionar auditorías de seguridad de la información bajo el estándar **ISO/IEC 27001**. Permite registrar empresas, evaluar controles de seguridad, visualizar dashboards de cumplimiento y generar reportes en PDF y Excel.
+Sistema web desarrollado en **Django** y **Python** para gestionar auditorías de seguridad de la información bajo el estándar **ISO/IEC 27001**. Permite registrar empresas, evaluar controles de seguridad, visualizar dashboards de cumplimiento y generar reportes en PDF y Excel.
 
-> 💡 Desarrollado como proyecto académico y de portafolio profesional.
+> Desarrollado como proyecto académico y de portafolio profesional.
 
 ---
 
-## 🎬 Demo
+## Demo
 
 <!-- Sube tu video a YouTube y reemplaza VIDEO_ID con el id del video -->
 [![Demo del proyecto](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
@@ -30,7 +30,7 @@ Sistema web desarrollado en **Django** para gestionar auditorías de seguridad d
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 | Módulo | Descripción |
 |---|---|
@@ -43,7 +43,7 @@ Sistema web desarrollado en **Django** para gestionar auditorías de seguridad d
 
 ---
 
-## 🖥️ Capturas de pantalla
+## Capturas de pantalla
 
 <!-- Agrega tus capturas en una carpeta /docs/screenshots/ y enlázalas aquí -->
 | Dashboard | Evaluación | Lista Maestra |
@@ -52,7 +52,7 @@ Sistema web desarrollado en **Django** para gestionar auditorías de seguridad d
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Backend:** Python 3.11, Django 4.x
 - **Base de datos:** SQLite (desarrollo)
@@ -62,7 +62,7 @@ Sistema web desarrollado en **Django** para gestionar auditorías de seguridad d
 
 ---
 
-## 🚀 Instalación local
+## Instalación local
 
 ### Prerrequisitos
 - Python 3.11+
@@ -98,7 +98,7 @@ Abre tu navegador en `http://127.0.0.1:8000`
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 Auditoria27001/
@@ -119,7 +119,7 @@ Auditoria27001/
 
 ---
 
-## 📊 Flujo de la aplicación
+## Flujo de la aplicación
 
 ```
 Login → Menú → Registrar Empresa → Seleccionar Rol
@@ -130,15 +130,15 @@ Login → Menú → Registrar Empresa → Seleccionar Rol
 
 ---
 
-## 👩‍💻 Autora
+## Autora
 
-**Kate** — Desarrolladora del proyecto
+**Katerin Espitia** — Desarrolladora del proyecto
 
 [![GitHub](https://img.shields.io/badge/GitHub-yulkatesp-181717?style=for-the-badge&logo=github)](https://github.com/yulkatesp)
 
 ---
 
-## 📜 Licencia
+## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
