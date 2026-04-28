@@ -26,7 +26,7 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 <!-- Sube tu video a YouTube y reemplaza VIDEO_ID con el id del video -->
 [![Demo del proyecto](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
 
-> 📹 Haz clic en la imagen para ver la demo completa
+> Haz clic en la imagen para ver la demo completa
 
 ---
 
@@ -46,10 +46,11 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 ## Capturas de pantalla
 
 <!-- Agrega tus capturas en una carpeta /docs/screenshots/ y enlázalas aquí -->
-| Dashboard | Evaluación | Lista Maestra |
+| Login | Evaluación | Crear | Empresas | Rol | Controles | Guardar | Lista Maestra |
 |---|---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Evaluación](docs/screenshots/evaluacion.png) | ![Lista Maestra](docs/screenshots/lista_maestra.png) |
-
+| ![Login](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) | ![Crear](docs/screenshots/crear.png) |
+| ![Empresas](docs/screenshots/crear.png) | | ![Rol](docs/screenshots/crear.png) | | ![Controles](docs/screenshots/crear.png) |
+| ![Guardar](docs/screenshots/crear.png) | | ![Lista Maestra](docs/screenshots/crear.png) |
 ---
 
 ## Tecnologías utilizadas
