@@ -24,7 +24,7 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 ## Demo
 
 <!-- Sube tu video a YouTube y reemplaza VIDEO_ID con el id del video -->
-[![Demo del proyecto](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+![Demo del proyecto](docs/videos/ISO.mp4)
 
 > Haz clic en la imagen para ver la demo completa
 
