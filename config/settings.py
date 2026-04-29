@@ -150,4 +150,9 @@ DATABASES = {
     )
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-a57bc.up.railway.app',
+]
+
+CSRF_COOKIE_SECURE = True
 
