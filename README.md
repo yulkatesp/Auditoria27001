@@ -21,7 +21,7 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 
 ---
 
-## Demo
+## Demo video
 
 <!-- Sube tu video a YouTube y reemplaza VIDEO_ID con el id del video -->
 [![Demo del proyecto](docs/screenshots/portada.png)](https://youtu.be/0bS4qOZti9Q)
@@ -29,6 +29,10 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 > Haz clic en la imagen para ver la demo completa
 
 ---
+
+## Demo en línea (Acá puedes probarla en línea)
+ 
+**[https://web-production-a57bc.up.railway.app](https://web-production-a57bc.up.railway.app)**
 
 ## Funcionalidades
 
@@ -40,6 +44,16 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 | **Dashboard** | Visualización de cumplimiento, riesgos y madurez |
 | **Reportes** | Exportación de resultados en PDF y Excel |
 | **Lista Maestra** | Gestión de documentos del SGSI |
+
+- Registro y gestión de empresas auditadas
+- Evaluación de los 93 controles ISO 27001:2022
+- Filtrado por categoría (Organizacional, Personas, Físicos, Tecnológicos)
+- Seguimiento de estado por control (Cumple / No Cumple / En Proceso)
+- Barra de progreso en tiempo real
+- Generación de reportes en Excel y PDF
+- Dashboard con resultados de auditoría
+- Lista maestra de documentos del SGSI
+- Autenticación de usuarios con selección de rol
 
 ---
 
@@ -54,11 +68,11 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 
 ## Tecnologías utilizadas
 
-- **Backend:** Python 3.11, Django 4.x
-- **Base de datos:** SQLite (desarrollo)
-- **Reportes:** ReportLab (PDF), openpyxl (Excel)
-- **Frontend:** HTML5, CSS3, Bootstrap
-- **Control de versiones:** Git & GitHub
+- **Backend:** Python 3.12 / Django
+- **Base de datos:** PostgreSQL (Railway) / SQLite (local)
+- **Frontend:** HTML, CSS, JavaScript
+- **Reportes:** ReportLab (PDF), OpenPyXL (Excel)
+- **Hosting:** Railway
 
 ---
 
@@ -72,25 +86,21 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 ### Pasos
 
 ```bash
-# 1. Clona el repositorio
-git clone https://github.com/yulkatesp/Auditoria27001.git
-cd Auditoria27001
-
-# 2. Crea y activa el entorno virtual
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
+ 
+# Crear entorno virtual
 python -m venv venv
-source venv/bin/activate        # Mac/Linux
-venv\Scripts\activate           # Windows
-
-# 3. Instala las dependencias
+source venv/bin/activate  # Windows: venv\Scripts\activate
+ 
+# Instalar dependencias
 pip install -r requirements.txt
-
-# 4. Aplica las migraciones
+ 
+# Aplicar migraciones
 python manage.py migrate
-
-# 5. Crea un superusuario
-python manage.py createsuperuser
-
-# 6. Inicia el servidor
+ 
+# Correr el servidor
 python manage.py runserver
 ```
 
@@ -101,20 +111,20 @@ Abre tu navegador en `http://127.0.0.1:8000`
 ## Estructura del proyecto
 
 ```
-Auditoria27001/
-│
-├── auditoria/               # App principal
-│   ├── templates/           # Plantillas HTML
-│   ├── models.py            # Modelos: Empresa, Control, Evaluacion
-│   ├── views.py             # Lógica de negocio
-│   └── urls.py              # Rutas de la app
-│
-├── config/                  # Configuración Django
+AUDITORIA_ISO27001/
+├── auditoria/
+│   ├── data/
+│   │   └── controles.json
+│   ├── templates/
+│   ├── models.py
+│   ├── views.py
+│   └── urls.py
+├── config/
 │   ├── settings.py
 │   └── urls.py
-│
-├── manage.py
-└── requirements.txt
+├── requirements.txt
+├── Procfile
+└── manage.py
 ```
 
 ---
