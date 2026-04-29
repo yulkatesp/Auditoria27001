@@ -1,0 +1,1 @@
+web: gunicorn auditoria_27001.wsgi

@@ -119,4 +119,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+import os
+
+ALLOWED_HOSTS = ['*']
+
+DEBUG = False
+
 
