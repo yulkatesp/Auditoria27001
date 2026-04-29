@@ -1,1 +1,1 @@
-web: gunicorn auditoria_27001.wsgi
+web: gunicorn config.wsgi:application

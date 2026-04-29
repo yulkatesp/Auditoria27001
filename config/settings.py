@@ -121,8 +121,28 @@ STATIC_URL = 'static/'
 
 import os
 
-ALLOWED_HOSTS = ['*']
+# Cambia DEBUG a False en producción
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-DEBUG = False
+ALLOWED_HOSTS = ['*']  # Railway asigna el dominio automáticamente
+
+# Archivos estáticos con WhiteNoise
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← Agrega esta línea (segunda)
+    # ... resto de middlewares
+]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Base de datos — usa la variable de Railway automáticamente
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR}/db.sqlite3'
+    )
+}
 
 
