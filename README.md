@@ -57,15 +57,6 @@ Sistema web desarrollado en **Django** y **Python** para gestionar auditorías d
 
 ---
 
-## Capturas de pantalla
-
-<!-- Agrega tus capturas en una carpeta /docs/screenshots/ y enlázalas aquí -->
-| Login | Evaluación | Crear | Empresas | Rol | Controles | Guardar | Lista Maestra |
- ![Login](docs/screenshots/login.png) ![Dashboard](docs/screenshots/dashboard.png) ![Crear](docs/screenshots/crear.png) 
- ![Empresas](docs/screenshots/empresas.png)  ![Rol](docs/screenshots/rol.png)  ![Controles](docs/screenshots/controles.png) 
- ![Guardar](docs/screenshots/guardar.png) ![Lista Maestra](docs/screenshots/listamaestra.png) 
----
-
 ## Tecnologías utilizadas
 
 - **Backend:** Python 3.12 / Django
